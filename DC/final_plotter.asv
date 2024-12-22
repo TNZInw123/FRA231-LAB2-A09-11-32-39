@@ -1,0 +1,34 @@
+figure;
+clf('reset');
+
+linetype1 = '-* ';
+
+sgtitle('Brushed DC Motor Characteristics Graph', 'Interpreter','latex');
+
+Xaxes = TLoad;
+Yaxes = [T_S, T_C, PowerOutput, Efficiency];
+
+titles = ["Torque-Speed", "Torque-Current", "Power", "Efficiency"];
+
+ax_1 = subplot(2,2,1);
+ax_2 = subplot(2,2,2);
+ax_3 = subplot(2,2,3);
+ax_4 = subplot(2,2,4);
+
+ax = [ax_1, ax_2, ax_3, ax_4];
+c = 'rgbm';
+
+for i = 1:4
+    plot(ax(i), Xaxes, Yaxes(i), [c(i) linetype1], 'LineWidth', 1.5);
+    title(ax(i), titles(i));
+    axis(ax(i), "padded");
+    grid(ax(i), 'on');
+    xlabel(ax(i), 'Torque (Nm)');
+    ylabel(ax(i), '***');
+    xticks(ax(i), TLoad);
+    % yticks(ax(i), 0:10:100);
+
+    legend(ax(i), "Measured", Location="southeast");
+end
+
+set(gcf, "Color", 'w')
